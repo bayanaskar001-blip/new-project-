@@ -1,0 +1,278 @@
+[
+{
+"t": "WordBoundary",
+"text": "Бүгін",
+"start": 0.129541,
+"end": 0.288624
+},
+{
+"t": "WordBoundary",
+"text": "кешке",
+"start": 0.334083,
+"end": 0.606791
+},
+{
+"t": "WordBoundary",
+"text": "не",
+"start": 0.652291,
+"end": 0.765916
+},
+{
+"t": "WordBoundary",
+"text": "істейсің",
+"start": 0.777291,
+"end": 1.220457
+},
+{
+"t": "WordBoundary",
+"text": "Зе",
+"start": 2.022708,
+"end": 2.181791
+},
+{
+"t": "WordBoundary",
+"text": "Доп-қа",
+"start": 2.238625,
+"end": 2.579541
+},
+{
+"t": "WordBoundary",
+"text": "кел",
+"start": 2.602291,
+"end": 2.840916
+},
+{
+"t": "WordBoundary",
+"text": "Плейстейшн",
+"start": 3.681833,
+"end": 4.238666
+},
+{
+"t": "WordBoundary",
+"text": "5",
+"start": 4.25,
+"end": 4.522708
+},
+{
+"t": "WordBoundary",
+"text": "сексен",
+"start": 4.590916,
+"end": 4.920457
+},
+{
+"t": "WordBoundary",
+"text": "бес",
+"start": 4.920458,
+"end": 5.102291
+},
+{
+"t": "WordBoundary",
+"text": "дюймдік",
+"start": 5.102291,
+"end": 5.488666
+},
+{
+"t": "WordBoundary",
+"text": "экран",
+"start": 5.534083,
+"end": 5.931791
+},
+{
+"t": "WordBoundary",
+"text": "және",
+"start": 5.954541,
+"end": 6.204541
+},
+{
+"t": "WordBoundary",
+"text": "жайлы",
+"start": 6.204541,
+"end": 6.534082
+},
+{
+"t": "WordBoundary",
+"text": "вип-бөлмелер",
+"start": 6.568166,
+"end": 7.306791
+},
+{
+"t": "WordBoundary",
+"text": "Тікелей",
+"start": 8.138625,
+"end": 8.422708
+},
+{
+"t": "WordBoundary",
+"text": "футбол",
+"start": 8.422708,
+"end": 8.843166
+},
+{
+"t": "WordBoundary",
+"text": "Нетфликс",
+"start": 8.979541,
+"end": 9.547707
+},
+{
+"t": "WordBoundary",
+"text": "және",
+"start": 9.547708,
+"end": 9.786333
+},
+{
+"t": "WordBoundary",
+"text": "Кинопоиск",
+"start": 9.786375,
+"end": 10.434083
+},
+{
+"t": "WordBoundary",
+"text": "Үш",
+"start": 10.525,
+"end": 10.695458
+},
+{
+"t": "WordBoundary",
+"text": "сағатқа",
+"start": 10.706833,
+"end": 11.115916
+},
+{
+"t": "WordBoundary",
+"text": "төле",
+"start": 11.127291,
+"end": 11.377291
+},
+{
+"t": "WordBoundary",
+"text": "төртінші",
+"start": 11.422708,
+"end": 11.843166
+},
+{
+"t": "WordBoundary",
+"text": "сағат",
+"start": 11.843166,
+"end": 12.161332
+},
+{
+"t": "WordBoundary",
+"text": "сыйлық",
+"start": 12.161375,
+"end": 12.468208
+},
+{
+"t": "WordBoundary",
+"text": "Әр",
+"start": 13.284083,
+"end": 13.420458
+},
+{
+"t": "WordBoundary",
+"text": "мың",
+"start": 13.454541,
+"end": 13.590916
+},
+{
+"t": "WordBoundary",
+"text": "теңгеден",
+"start": 13.602291,
+"end": 14.045457
+},
+{
+"t": "WordBoundary",
+"text": "жүз",
+"start": 14.113625,
+"end": 14.329541
+},
+{
+"t": "WordBoundary",
+"text": "теңге",
+"start": 14.340916,
+"end": 14.590916
+},
+{
+"t": "WordBoundary",
+"text": "кэшбэк",
+"start": 14.681833,
+"end": 15.113666
+},
+{
+"t": "WordBoundary",
+"text": "Атырау",
+"start": 15.936375,
+"end": 16.368208
+},
+{
+"t": "WordBoundary",
+"text": "Сәтбаев",
+"start": 16.413625,
+"end": 17.05
+},
+{
+"t": "WordBoundary",
+"text": "екі",
+"start": 17.084083,
+"end": 17.493166
+},
+{
+"t": "WordBoundary",
+"text": "Вэ",
+"start": 17.493166,
+"end": 17.834082
+},
+{
+"t": "WordBoundary",
+"text": "Уотсап",
+"start": 18.681833,
+"end": 19.102291
+},
+{
+"t": "WordBoundary",
+"text": "арқылы",
+"start": 19.102291,
+"end": 19.420457
+},
+{
+"t": "WordBoundary",
+"text": "брондап",
+"start": 19.443166,
+"end": 19.886332
+},
+{
+"t": "WordBoundary",
+"text": "қой",
+"start": 19.897708,
+"end": 20.113624
+},
+{
+"t": "WordBoundary",
+"text": "демалыс",
+"start": 20.193166,
+"end": 20.602249
+},
+{
+"t": "WordBoundary",
+"text": "күндері",
+"start": 20.602291,
+"end": 20.977291
+},
+{
+"t": "WordBoundary",
+"text": "орын",
+"start": 21.011375,
+"end": 21.318166
+},
+{
+"t": "WordBoundary",
+"text": "тез",
+"start": 21.318166,
+"end": 21.556791
+},
+{
+"t": "WordBoundary",
+"text": "бітеді",
+"start": 21.556833,
+"end": 21.852291
+}
+]
