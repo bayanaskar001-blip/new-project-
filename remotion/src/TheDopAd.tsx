@@ -106,7 +106,7 @@ const Tag: React.FC<{text: string}> = ({text}) => {
     <div style={{position: 'absolute', top: 500, width: '100%', display: 'flex', justifyContent: 'center'}}>
       <div style={{
         background: RED, color: WHITE, fontFamily: FONT, fontWeight: 900, fontSize: 64, padding: '18px 40px',
-        borderRadius: 22, transform: `scale(${s}) rotate(-2deg)`, boxShadow: `0 0 40px ${RED}aa, 0 10px 30px rgba(0,0,0,.5)`,
+        borderRadius: 22, transform: `perspective(800px) rotateX(14deg) scale(${s}) rotate(-2deg)`, boxShadow: box3d(10, '#B0101F', '#3A0309', `0 0 40px ${RED}aa`), textShadow: x3d(4, '#8A0C18', '#3A0309'),
         letterSpacing: 1, whiteSpace: 'nowrap',
       }}>{text}</div>
     </div>
@@ -116,9 +116,25 @@ const Tag: React.FC<{text: string}> = ({text}) => {
 const NeonText: React.FC<{children: React.ReactNode; size: number; color?: string; style?: React.CSSProperties}> = ({children, size, color = WHITE, style}) => (
   <div style={{
     fontFamily: FONT, fontWeight: 900, fontSize: size, color, lineHeight: 1, textAlign: 'center',
-    textShadow: `0 0 18px ${RED}, 0 0 50px ${RED}, 0 0 90px ${RED}88`, ...style,
+    textShadow: x3d(Math.max(5, Math.round(size / 17)), '#C0101F', '#2E0207', `0 0 50px ${RED}, 0 0 100px ${RED}88`), ...style,
   }}>{children}</div>
 );
+
+// ---- 3D: объёмные буквы (слоистая «экструзия») ----
+const mix = (a: string, b: string, k: number) => {
+  const h = (x: string, i: number) => parseInt(x.slice(1 + i * 2, 3 + i * 2), 16);
+  return '#' + [0, 1, 2].map((i) => Math.round(h(a, i) + (h(b, i) - h(a, i)) * k).toString(16).padStart(2, '0')).join('');
+};
+const x3d = (depth: number, near: string, far: string, extra = '') => {
+  const layers = Array.from({length: depth}, (_, i) => `${(i + 1) * 0.6}px ${i + 1}px 0 ${mix(near, far, i / Math.max(depth - 1, 1))}`);
+  layers.push(`${depth * 0.6 + 2}px ${depth + 8}px ${depth + 10}px rgba(0,0,0,.65)`);
+  if (extra) layers.push(extra);
+  return layers.join(', ');
+};
+const W3D = (d: number) => x3d(d, '#B9B6BD', '#2A2930');      // белые буквы
+const R3D = (d: number) => x3d(d, '#B0101F', '#3A0309');      // красные буквы
+const box3d = (d: number, near: string, far: string, glow = '') =>
+  [...Array.from({length: d}, (_, i) => `0 ${i + 1}px 0 ${mix(near, far, i / Math.max(d - 1, 1))}`), `0 ${d + 10}px 26px rgba(0,0,0,.6)`, ...(glow ? [glow] : [])].join(', ');
 
 const Glow: React.FC = () => {
   const fr = useCurrentFrame();
@@ -159,12 +175,12 @@ const OfferScene: React.FC<{bg: React.ReactNode}> = ({bg}) => {
       {bg}
       <Glow />
       <AbsoluteFill style={{justifyContent: 'center', alignItems: 'center', gap: 30}}>
-        <div style={{fontFamily: FONT, fontWeight: 900, fontSize: 76, color: WHITE, opacity: a, transform: `translateY(${(1 - a) * -60}px)`}}>
+        <div style={{fontFamily: FONT, fontWeight: 900, fontSize: 76, color: WHITE, textShadow: W3D(6), opacity: a, transform: `translateY(${(1 - a) * -60}px)`}}>
           3 САҒАТ ТӨЛЕ
         </div>
         <NeonText size={330} style={{transform: `scale(${big})`}}>3+1</NeonText>
         <div style={{
-          background: WHITE, color: BG, fontFamily: FONT, fontWeight: 900, fontSize: 56, padding: '20px 36px', borderRadius: 26, whiteSpace: 'nowrap',
+          background: WHITE, color: BG, fontFamily: FONT, fontWeight: 900, fontSize: 56, padding: '20px 36px', borderRadius: 26, whiteSpace: 'nowrap', boxShadow: box3d(10, '#BDBAC2', '#3A3940'),
           transform: `scale(${g}) rotate(-3deg)`,
         }}>4-ші сағат СЫЙЛЫҚ 🎁</div>
       </AbsoluteFill>
@@ -185,8 +201,8 @@ const CashbackScene: React.FC<{bg: React.ReactNode}> = ({bg}) => {
       <Glow />
       <AbsoluteFill style={{justifyContent: 'center', alignItems: 'center', gap: 20}}>
         <NeonText size={300} style={{transform: `scale(${a})`}}>{n}%</NeonText>
-        <div style={{fontFamily: FONT, fontWeight: 900, fontSize: 110, color: WHITE, transform: `scale(${c})`, letterSpacing: 4}}>КЭШБЭК 💸</div>
-        <div style={{marginTop: 30, fontFamily: FONT, fontWeight: 800, fontSize: 58, color: WHITE, opacity: interpolate(fr, [8, 18], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'})}}>
+        <div style={{fontFamily: FONT, fontWeight: 900, fontSize: 110, color: WHITE, textShadow: W3D(8), transform: `scale(${c})`, letterSpacing: 4}}>КЭШБЭК 💸</div>
+        <div style={{marginTop: 30, fontFamily: FONT, fontWeight: 800, fontSize: 58, color: WHITE, textShadow: W3D(4), opacity: interpolate(fr, [8, 18], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'})}}>
           әр 1 000 ₸ → <span style={{color: RED}}>100 ₸</span>
         </div>
       </AbsoluteFill>
@@ -199,7 +215,7 @@ const AddressScene: React.FC<{bg: React.ReactNode}> = ({bg}) => {
   const {fps} = useVideoConfig();
   const a = spring({frame: fr - 2, fps, config: {damping: 12}});
   const b = spring({frame: fr - 10, fps, config: {damping: 12}});
-  const row: React.CSSProperties = {fontFamily: FONT, fontWeight: 900, color: WHITE, background: 'rgba(10,10,13,.82)', borderLeft: `14px solid ${RED}`, borderRadius: 20, padding: '26px 40px'};
+  const row: React.CSSProperties = {fontFamily: FONT, fontWeight: 900, color: WHITE, background: 'rgba(10,10,13,.82)', borderLeft: `14px solid ${RED}`, borderRadius: 20, padding: '26px 40px', textShadow: W3D(5), boxShadow: box3d(8, '#2A2A32', '#0A0A0D')};
   return (
     <AbsoluteFill>
       {bg}
@@ -224,15 +240,15 @@ const CtaScene: React.FC<{bg: React.ReactNode}> = ({bg}) => {
       <Glow />
       <AbsoluteFill style={{justifyContent: 'center', alignItems: 'center', gap: 34, paddingBottom: 120}}>
         <NeonText size={170} style={{transform: `scale(${logo})`, letterSpacing: 5}}>THE DOP</NeonText>
-        <div style={{fontFamily: FONT, fontWeight: 800, fontSize: 50, color: WHITE, letterSpacing: 4, opacity: logo}}>Ойна. Қара. Демал.</div>
+        <div style={{fontFamily: FONT, fontWeight: 800, fontSize: 50, color: WHITE, textShadow: W3D(4), letterSpacing: 4, opacity: logo}}>Ойна. Қара. Демал.</div>
         <div style={{
-          marginTop: 30, background: '#25D366', color: 'white', fontFamily: FONT, fontWeight: 900, fontSize: 64,
-          padding: '30px 56px', borderRadius: 999, transform: `scale(${btn * pulse})`, boxShadow: '0 0 50px #25D36699',
+          marginTop: 30, background: '#25D366', color: 'white', fontFamily: FONT, fontWeight: 900, fontSize: 50, whiteSpace: 'nowrap',
+          padding: '26px 44px', borderRadius: 999, transform: `perspective(800px) rotateX(12deg) scale(${btn * pulse})`, boxShadow: box3d(12, '#1C9E4C', '#0A3D1D', '0 0 50px #25D36699'), textShadow: x3d(4, '#178A41', '#0A3D1D'),
         }}>WhatsApp арқылы брондау</div>
-        <div style={{fontFamily: FONT, fontWeight: 900, fontSize: 70, color: WHITE, opacity: btn}}>+7 702 918 87 88</div>
-        <div style={{fontFamily: FONT, fontWeight: 800, fontSize: 52, color: WHITE, opacity: btn * 0.85}}>@thedopkz</div>
+        <div style={{fontFamily: FONT, fontWeight: 900, fontSize: 70, color: WHITE, textShadow: W3D(7), opacity: btn}}>+7 702 918 87 88</div>
+        <div style={{fontFamily: FONT, fontWeight: 800, fontSize: 52, color: WHITE, textShadow: W3D(4), opacity: btn * 0.85}}>@thedopkz</div>
         <div style={{
-          marginTop: 30, fontFamily: FONT, fontWeight: 900, fontSize: 54, color: WHITE, background: RED, padding: '16px 34px', borderRadius: 18,
+          marginTop: 30, fontFamily: FONT, fontWeight: 900, fontSize: 54, color: WHITE, background: RED, padding: '16px 34px', borderRadius: 18, boxShadow: box3d(9, '#B0101F', '#3A0309'), textShadow: x3d(3, '#8A0C18', '#3A0309'),
           transform: `scale(${fire})`,
         }}>Демалыс күндері орын тез бітеді 🔥</div>
       </AbsoluteFill>
@@ -286,15 +302,15 @@ const VipCard: React.FC<{c: Card; exitAt?: number}> = ({c, exitAt}) => {
         <AbsoluteFill style={{background: `linear-gradient(105deg, transparent ${glare - 20}%, rgba(255,255,255,.35) ${glare}%, transparent ${glare + 15}%)`}} />
         <div style={{position: 'absolute', left: 40, bottom: full ? 44 : 30, right: 40, display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', transform: `translateY(${(1 - lbl) * 60}px)`, opacity: lbl}}>
           <div>
-            <div style={{fontFamily: FONT, fontWeight: 900, fontSize: full ? 130 : 96, color: WHITE, lineHeight: 0.95, textShadow: `0 0 30px ${c.color}`}}>{c.n}</div>
-            <div style={{fontFamily: FONT, fontWeight: 800, fontSize: full ? 58 : 44, color: WHITE, marginTop: 10}}>
+            <div style={{fontFamily: FONT, fontWeight: 900, fontSize: full ? 130 : 96, color: WHITE, lineHeight: 0.95, textShadow: x3d(full ? 9 : 7, '#B9B6BD', '#2A2930', `0 0 40px ${c.color}`)}}>{c.n}</div>
+            <div style={{fontFamily: FONT, fontWeight: 800, fontSize: full ? 58 : 44, color: WHITE, marginTop: 10, textShadow: W3D(4)}}>
               {price.toLocaleString('ru-RU').replace(/ /g, ' ')} ₸<span style={{opacity: 0.7, fontSize: '0.7em'}}> / сағ</span>
             </div>
           </div>
-          <div style={{background: c.color, color: WHITE, fontFamily: FONT, fontWeight: 900, fontSize: full ? 72 : 56, padding: '10px 26px', borderRadius: 20, boxShadow: `0 0 30px ${c.color}`}}>📺 {c.screen}</div>
+          <div style={{background: c.color, color: WHITE, fontFamily: FONT, fontWeight: 900, fontSize: full ? 72 : 56, padding: '10px 26px', borderRadius: 20, boxShadow: box3d(8, mix(c.color, '#000000', 0.35), mix(c.color, '#000000', 0.8), `0 0 30px ${c.color}`), textShadow: W3D(3)}}>📺 {c.screen}</div>
         </div>
         {c.hit && (
-          <div style={{position: 'absolute', top: 36, right: 36, background: RED, color: WHITE, fontFamily: FONT, fontWeight: 900, fontSize: 52, padding: '10px 24px', borderRadius: 16, transform: `rotate(6deg) scale(${lbl})`}}>ХИТ 🔥</div>
+          <div style={{position: 'absolute', top: 36, right: 36, background: RED, color: WHITE, fontFamily: FONT, fontWeight: 900, fontSize: 52, padding: '10px 24px', borderRadius: 16, boxShadow: box3d(7, '#B0101F', '#3A0309'), textShadow: x3d(3, '#8A0C18', '#3A0309'), transform: `rotate(6deg) scale(${lbl})`}}>ХИТ 🔥</div>
         )}
       </div>
     </div>
@@ -332,7 +348,7 @@ const Captions: React.FC = () => {
   const appear = interpolate(t, [start - 0.05, start + 0.1], [0.7, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
   return (
     <div style={{position: 'absolute', top: 1180, width: '100%', display: 'flex', justifyContent: 'center', padding: '0 70px', boxSizing: 'border-box'}}>
-      <div style={{textAlign: 'center', lineHeight: 1.15, transform: `scale(${appear})`}}>
+      <div style={{textAlign: 'center', lineHeight: 1.2, transform: `perspective(900px) rotateX(16deg) scale(${appear})`}}>
         {chunk.map((i) => {
           const w = W_ALL[i];
           const txt = DISPLAY[i] ?? w.text;
@@ -346,8 +362,8 @@ const Captions: React.FC = () => {
               fontFamily: FONT, fontWeight: 900, fontSize: 92, textTransform: 'uppercase',
               color: active ? RED : WHITE, opacity: said ? 1 : 0.55,
               transform: `scale(${active ? 1.06 : 1})`, display: 'inline-block', margin: '0 26px',
-              WebkitTextStroke: '3px #000', paintOrder: 'stroke fill',
-              textShadow: '0 6px 18px rgba(0,0,0,.8)',
+              WebkitTextStroke: '2px #000', paintOrder: 'stroke fill',
+              textShadow: active ? R3D(12) : W3D(12),
             }}>{txt}</span>
           );
         })}
@@ -405,12 +421,6 @@ export const TheDopAd: React.FC = () => {
       {/* Эффекты */}
       {sfx('riser', 0.3, 0.35)}
       {sfx('impact', 2.68, 0.8)}
-      {SCENES.slice(2).map((s) => sfx('whoosh', s.from - 0.12, 0.5))}
-      {VIP_CARDS.filter((c, i) => i !== 3).map((c) => (
-        <Sequence key={c.n} from={f(INS + c.at)} durationInFrames={f(1)}>
-          <Audio src={staticFile('thedop/whoosh_card.wav')} volume={0.55} />
-        </Sequence>
-      ))}
       {sfx('pop', 12.46 + VOICE_OFFSET - 0.1, 0.6)}
       {sfx('coin', 14.68 + VOICE_OFFSET, 0.6)}
       {sfx('impact', 18.9, 0.5)}
