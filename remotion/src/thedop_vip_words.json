@@ -1,0 +1,104 @@
+[
+{
+"t": "WordBoundary",
+"text": "Вип",
+"start": 0.105791,
+"end": 0.317832
+},
+{
+"t": "WordBoundary",
+"text": "бір",
+"start": 0.329,
+"end": 0.474083
+},
+{
+"t": "WordBoundary",
+"text": "сексен",
+"start": 0.529916,
+"end": 0.864749
+},
+{
+"t": "WordBoundary",
+"text": "бес",
+"start": 0.86475,
+"end": 1.043291
+},
+{
+"t": "WordBoundary",
+"text": "дюйм",
+"start": 1.043291,
+"end": 1.400416
+},
+{
+"t": "WordBoundary",
+"text": "Вип",
+"start": 1.567875,
+"end": 1.846875
+},
+{
+"t": "WordBoundary",
+"text": "екі",
+"start": 1.902666,
+"end": 2.215166
+},
+{
+"t": "WordBoundary",
+"text": "жетпіс",
+"start": 2.315625,
+"end": 2.650458
+},
+{
+"t": "WordBoundary",
+"text": "бір",
+"start": 2.67275,
+"end": 2.829
+},
+{
+"t": "WordBoundary",
+"text": "Вип",
+"start": 2.918291,
+"end": 3.197291
+},
+{
+"t": "WordBoundary",
+"text": "үш",
+"start": 3.264291,
+"end": 3.409374
+},
+{
+"t": "WordBoundary",
+"text": "пен",
+"start": 3.420541,
+"end": 3.599124
+},
+{
+"t": "WordBoundary",
+"text": "Вип",
+"start": 3.688375,
+"end": 3.88925
+},
+{
+"t": "WordBoundary",
+"text": "төрт",
+"start": 3.889291,
+"end": 4.123666
+},
+{
+"t": "WordBoundary",
+"text": "елу",
+"start": 4.179458,
+"end": 4.413833
+},
+{
+"t": "WordBoundary",
+"text": "бес",
+"start": 4.413833,
+"end": 4.625874
+},
+{
+"t": "WordBoundary",
+"text": "дюйм",
+"start": 4.637041,
+"end": 4.994166
+}
+]
