@@ -107,9 +107,10 @@ button { font: inherit; }
 /* ---------- Шапка ---------- */
 .header {
   position: sticky; top: 0; z-index: 100; height: var(--header-h);
-  background: rgba(255,255,255,.92); backdrop-filter: saturate(1.4) blur(14px);
   border-bottom: 1px solid transparent; transition: border-color .3s, box-shadow .3s;
 }
+/* фон шапки — отдельным слоем, чтобы размытие не мешало мобильному меню */
+.header::before { content: ""; position: absolute; inset: 0; z-index: -1; background: rgba(255,255,255,.92); backdrop-filter: saturate(1.4) blur(14px); -webkit-backdrop-filter: saturate(1.4) blur(14px); }
 .header.is-scrolled { border-color: var(--line); box-shadow: 0 6px 24px -18px rgba(20,17,19,.35); }
 .header__inner { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
 .logo { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; color: var(--black); }
@@ -327,7 +328,7 @@ button { font: inherit; }
   .burger { display: block; }
   .header__cta { display: none; }
   .nav {
-    position: fixed; inset: var(--header-h) 0 0 0; z-index: 99;
+    position: fixed; inset: var(--nav-top, var(--header-h)) 0 0 0; z-index: 99;
     background: var(--white); padding: 32px var(--gutter) 40px;
     display: flex; flex-direction: column; justify-content: space-between;
     opacity: 0; visibility: hidden; transform: translateY(-12px);

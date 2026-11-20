@@ -35,6 +35,7 @@ const nav = document.getElementById('nav');
 const setMenu = (open) => {
   burger.setAttribute('aria-expanded', String(open));
   burger.setAttribute('aria-label', open ? 'Закрыть меню' : 'Открыть меню');
+  if (open) nav.style.setProperty('--nav-top', `${Math.round(header.getBoundingClientRect().bottom)}px`);
   nav.classList.toggle('is-open', open);
   document.body.classList.toggle('menu-open', open);
 };
