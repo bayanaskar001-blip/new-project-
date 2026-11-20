@@ -1,4 +1,4 @@
-# Фото в epilation_test_montage_v2.mp4
+# Фото в epilation_test_montage_v2.mp4 и v3.mp4
 
 Все фото с Unsplash, бесплатная лицензия Unsplash (коммерческое использование разрешено, указывать автора не обязательно).
 
