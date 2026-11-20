@@ -12,11 +12,11 @@
 ## Как заменить
 | Что | Где |
 |---|---|
-| Фотографии | Положите новые файлы в `images/` с теми же именами: `hero-1.jpg`, `hero-2.jpg` (первый экран), `about.jpg` (О нас), `procedure.jpg` (Процедура), `skin.jpg` (Вопросы), `insta-1…4.jpg` (Instagram). Затем обновите `alt` у `<img>` в `index.html` и удалите плашки `<span class="photo-note">`. |
+| Фотографии | Положите новые файлы в `images/` с теми же именами: `photo-procedure.jpg`, `photo-underarm.jpg`, `photo-face.jpg` (коллаж первого экрана и галерея), `photo-device.jpg` (О нас), `photo-legs.jpg` (Процедура). Затем обновите `alt` у `<img>` в `index.html`. |
 | Логотип | `images/logo.png` (круглый, квадратный файл) |
 | Адрес | `index.html`, раздел «КОНТАКТЫ»: `<dd ... data-edit="address">Уточнить у администратора</dd>` |
 | График работы | там же: `<dd ... data-edit="hours">` |
-| Цены и состав | `index.html`, раздел «УСЛУГИ И ЦЕНЫ»: `price-card__price` — цена, `<ul class="tags">` — зоны, `data-wa` у кнопки — текст сообщения |
+| Цены и состав | `index.html`, раздел «УСЛУГИ И ЦЕНЫ»: `price__value` — цена, `price__zones` — зоны, `data-wa` у кнопки — текст сообщения |
 | Номер WhatsApp | `script.js`, константа `WHATSAPP_NUMBER`, и видимый номер в `index.html` (поиск: `+7 702 582 98 89`) |
 
-Временные фото — с Unsplash (свободная лицензия); лучше заменить их на фото студии.
+Шрифты: Cormorant Garamond (заголовки), Great Vibes (рукописные слова), Montserrat (текст) — Google Fonts.

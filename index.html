@@ -5,34 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>LASER SPOT — лазерная эпиляция в Атырау</title>
   <meta name="description" content="LASER SPOT — студия лазерной эпиляции в Атырау. Диодный лазер, все зоны, для женщин и мужчин. Запись через WhatsApp.">
-  <meta name="theme-color" content="#8e2343">
+  <meta name="theme-color" content="#c27a8b">
   <meta property="og:title" content="LASER SPOT — лазерная эпиляция в Атырау">
   <meta property="og:description" content="Диодный лазер. Все зоны. Запись через WhatsApp.">
-  <meta property="og:image" content="images/hero-1.jpg">
+  <meta property="og:image" content="images/photo-underarm.jpg">
   <script>document.documentElement.classList.add("js")</script>
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700&family=Caveat:wght@600&display=swap" rel="stylesheet">
-  <link rel="preload" as="image" href="images/hero-1.jpg">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Great+Vibes&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<a class="skip-link" href="#main">Перейти к содержимому</a>
-
-<!-- ============ ВЕРХНЯЯ ПОЛОСА ============ -->
-<div class="topbar">
-  <p>Студия лазерной эпиляции в Атырау · <a href="#" data-wa="Здравствуйте! Хочу записаться на консультацию.">Запись в WhatsApp</a></p>
-</div>
+<a class="skip-link" href="#about">Перейти к содержимому</a>
 
 <!-- ============ ШАПКА ============ -->
 <header class="header" id="header">
   <div class="header__inner container">
     <a href="#top" class="logo" aria-label="LASER SPOT — на главную">
-      <!-- ЛОГОТИП: замените images/logo.png на файл в хорошем качестве -->
-      <img src="images/logo.png" alt="" width="44" height="44" class="logo__mark">
-      <span class="logo__text">Laser<span>Spot</span></span>
+      <!-- ЛОГОТИП: images/logo.png -->
+      <img src="images/logo.png" alt="" width="40" height="40" class="logo__mark">
+      <span class="logo__place">
+        <svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg>Атырау
+      </span>
     </a>
 
     <nav class="nav" id="nav" aria-label="Основное меню">
@@ -43,11 +39,11 @@
         <li><a href="#faq">Вопросы</a></li>
         <li><a href="#contacts">Контакты</a></li>
       </ul>
-      <a href="#" class="btn btn--dark nav__cta-mobile" data-wa="Здравствуйте! Хочу записаться на лазерную эпиляцию. Подскажите, пожалуйста, свободное время." target="_blank" rel="noopener">Записаться в WhatsApp</a>
+      <a href="#" class="btn btn--rose nav__cta-mobile" data-wa="Здравствуйте! Хочу записаться на лазерную эпиляцию. Подскажите, пожалуйста, свободное время." target="_blank" rel="noopener">Записаться в WhatsApp</a>
     </nav>
 
     <div class="header__actions">
-      <a href="#" class="btn btn--dark btn--sm header__cta" data-wa="Здравствуйте! Хочу записаться на лазерную эпиляцию. Подскажите, пожалуйста, свободное время." target="_blank" rel="noopener">Записаться</a>
+      <a href="#" class="btn btn--rose btn--sm header__cta" data-wa="Здравствуйте! Хочу записаться на лазерную эпиляцию. Подскажите, пожалуйста, свободное время." target="_blank" rel="noopener">Записаться</a>
       <button class="burger" id="burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="nav">
         <span></span><span></span><span></span>
       </button>
@@ -59,147 +55,124 @@
 
   <!-- ============ 1. ПЕРВЫЙ ЭКРАН ============ -->
   <section class="hero" id="top" aria-labelledby="hero-title">
-    <div class="hero__media">
-      <!-- ФОТО ПЕРВОГО ЭКРАНА: images/hero-1.jpg и images/hero-2.jpg -->
-      <img class="hero__img hero__img--1" src="images/hero-1.jpg" alt="Девушка с ухоженной гладкой кожей на нежно-розовом фоне" width="1400" height="1750" fetchpriority="high">
-      <img class="hero__img hero__img--2" src="images/hero-2.jpg" alt="Гладкая кожа плеч в мягком розовом свете" width="1400" height="1750">
-    </div>
-    <div class="hero__content">
-      <p class="hero__eyebrow reveal">Laser Spot · Атырау</p>
-      <h1 class="hero__title reveal" id="hero-title">Гладкая кожа начинается <em>с&nbsp;заботы о&nbsp;себе</em></h1>
-      <p class="hero__subtitle reveal">Лазерная эпиляция для женщин в Атырау</p>
-      <div class="hero__buttons reveal">
-        <a href="#" class="btn btn--light" data-wa="Здравствуйте! Хочу записаться на лазерную эпиляцию. Подскажите, пожалуйста, свободное время." target="_blank" rel="noopener">
-          <svg class="icon" aria-hidden="true"><use href="#i-wa"/></svg>Записаться в WhatsApp
-        </a>
-        <a href="#prices" class="btn btn--ghost-light">Посмотреть цены</a>
+    <div class="container hero__inner">
+      <div class="hero__head">
+        <p class="hero__brand reveal" aria-hidden="true">Laser Spot</p>
+        <p class="hero__script reveal" aria-hidden="true">студия лазерной эпиляции</p>
+      </div>
+      <div class="hero__body">
+        <h1 class="hero__title reveal" id="hero-title">Гладкая кожа начинается с&nbsp;заботы о&nbsp;себе</h1>
+        <p class="hero__subtitle reveal">Лазерная эпиляция для женщин в Атырау</p>
+        <div class="hero__buttons reveal">
+          <a href="#" class="btn btn--rose" data-wa="Здравствуйте! Хочу записаться на лазерную эпиляцию. Подскажите, пожалуйста, свободное время." target="_blank" rel="noopener">
+            <svg class="icon" aria-hidden="true"><use href="#i-wa"/></svg>Записаться в WhatsApp
+          </a>
+          <a href="#prices" class="btn btn--outline">Посмотреть цены</a>
+        </div>
+      </div>
+
+      <!-- ФОТО ПЕРВОГО ЭКРАНА: photo-procedure.jpg, photo-underarm.jpg, photo-face.jpg -->
+      <div class="hero__collage reveal">
+        <figure class="photo photo--a"><img src="images/photo-procedure.jpg" alt="Девушка в защитных очках на процедуре лазерной эпиляции подмышек" width="720" height="1280" fetchpriority="high"></figure>
+        <figure class="photo photo--b"><img src="images/photo-underarm.jpg" alt="Специалист в перчатках обрабатывает зону подмышек диодным лазером" width="720" height="1280" fetchpriority="high"></figure>
+        <figure class="photo photo--c"><img src="images/photo-face.jpg" alt="Лазерная эпиляция над верхней губой, клиентка в розовых защитных очках" width="933" height="1400"></figure>
       </div>
     </div>
-    <a href="#about" class="hero__scroll" aria-label="Прокрутить к разделу «О нас»"><span></span></a>
   </section>
 
-  <!-- Бегущая строка — факты из профиля студии -->
-  <div class="marquee" aria-hidden="true">
-    <div class="marquee__track">
-      <span>Диодный лазер</span><i>✦</i><span>Все зоны</span><i>✦</i><span>Для женщин и мужчин</span><i>✦</i><span>Атырау</span><i>✦</i>
-      <span>Диодный лазер</span><i>✦</i><span>Все зоны</span><i>✦</i><span>Для женщин и мужчин</span><i>✦</i><span>Атырау</span><i>✦</i>
-      <span>Диодный лазер</span><i>✦</i><span>Все зоны</span><i>✦</i><span>Для женщин и мужчин</span><i>✦</i><span>Атырау</span><i>✦</i>
-    </div>
-  </div>
-
   <!-- ============ 2. О СТУДИИ ============ -->
-  <section class="split section" id="about" aria-labelledby="about-title">
-    <div class="split__media reveal">
-      <!-- ФОТО «О НАС»: images/about.jpg — лучше заменить на фото студии -->
-      <img src="images/about.jpg" alt="Девушка с сияющей ухоженной кожей" loading="lazy" width="1200" height="1500">
-      <span class="photo-note">Временное фото — замените на фото студии</span>
-    </div>
-    <div class="split__text">
-      <p class="eyebrow reveal">О студии</p>
-      <h2 class="h2 reveal" id="about-title">Laser Spot — <em>пространство</em> заботы о&nbsp;коже</h2>
-      <p class="lead reveal">LASER SPOT — студия лазерной эпиляции в Атырау. Мы работаем на диодном лазере и выполняем процедуру на разных зонах тела — от небольших участков до всего тела.</p>
-      <p class="reveal">Принимаем женщин и мужчин. Перед первой процедурой специалист проводит консультацию, отвечает на вопросы и помогает выбрать подходящий комплекс.</p>
-      <ul class="facts reveal">
-        <li><strong>Диодный</strong><span>лазер</span></li>
-        <li><strong>Все</strong><span>зоны тела</span></li>
-        <li><strong>Ж / М</strong><span>для женщин и мужчин</span></li>
-      </ul>
-      <a href="#prices" class="btn btn--dark reveal">Услуги и цены</a>
+  <section class="about section section--rose" id="about" aria-labelledby="about-title">
+    <div class="container about__inner">
+      <div class="about__text">
+        <h2 class="title title--light reveal" id="about-title"><span class="script">О студии</span> Laser Spot</h2>
+        <p class="about__lead reveal">LASER SPOT — студия лазерной эпиляции в Атырау. Мы работаем на диодном лазере и выполняем процедуру на разных зонах тела — от небольших участков до всего тела.</p>
+        <ol class="rows">
+          <li class="row reveal"><span class="row__num">01</span><span>Диодный лазер</span></li>
+          <li class="row reveal"><span class="row__num">02</span><span>Разные зоны — от&nbsp;небольших участков до&nbsp;всего тела</span></li>
+          <li class="row reveal"><span class="row__num">03</span><span>Принимаем женщин и мужчин</span></li>
+          <li class="row reveal"><span class="row__num">04</span><span>Консультация специалиста перед первой процедурой</span></li>
+        </ol>
+      </div>
+      <!-- ФОТО «О НАС»: photo-device.jpg -->
+      <figure class="about__photo photo reveal">
+        <img src="images/photo-device.jpg" alt="Специалист настраивает аппарат диодного лазера на сенсорном экране" loading="lazy" width="828" height="940">
+      </figure>
     </div>
   </section>
 
   <!-- ============ 3. УСЛУГИ И ЦЕНЫ ============
-       Чтобы изменить цену или состав — правьте текст внутри карточки.
-       Текст сообщения в WhatsApp — в атрибуте data-wa кнопки. -->
+       Цена — в .price__value, состав — в .price__zones, текст сообщения WhatsApp — в data-wa кнопки -->
   <section class="prices section" id="prices" aria-labelledby="prices-title">
     <div class="container">
-      <div class="section-head">
-        <p class="eyebrow reveal">Услуги и цены</p>
-        <h2 class="h2 reveal" id="prices-title">Комплексы <em>лазерной эпиляции</em></h2>
-        <p class="section-head__text reveal">Выберите комплекс и запишитесь в WhatsApp — администратор подскажет свободное время.</p>
-      </div>
+      <h2 class="title reveal" id="prices-title"><span class="script">Стоимость</span> комплексов</h2>
+      <p class="section__lead reveal">Выберите комплекс и запишитесь в WhatsApp — администратор подскажет свободное время.</p>
 
       <div class="price-grid">
-        <article class="price-card reveal">
-          <div class="price-card__top"><span class="price-card__num">01</span><span class="price-card__label">Комплекс №1</span></div>
-          <p class="price-card__price">18 000 <span>₸</span></p>
-          <ul class="tags"><li>Подмышки</li><li>Бикини</li><li>Зона S</li></ul>
-          <a href="#" class="btn btn--dark btn--block" data-wa="Здравствуйте! Хочу записаться на комплекс №1. Подскажите, пожалуйста, свободное время." target="_blank" rel="noopener" aria-label="Записаться на комплекс №1 в WhatsApp">Записаться</a>
+        <article class="price reveal">
+          <span class="price__num">01</span>
+          <h3 class="price__name">Комплекс №1</h3>
+          <p class="price__zones">Подмышки, бикини, зона S</p>
+          <p class="price__value">18 000 ₸</p>
+          <a href="#" class="btn btn--rose btn--block" data-wa="Здравствуйте! Хочу записаться на комплекс №1. Подскажите, пожалуйста, свободное время." target="_blank" rel="noopener" aria-label="Записаться на комплекс №1 в WhatsApp">Записаться</a>
         </article>
-
-        <article class="price-card reveal">
-          <div class="price-card__top"><span class="price-card__num">02</span><span class="price-card__label">Комплекс №2</span></div>
-          <p class="price-card__price">22 000 <span>₸</span></p>
-          <ul class="tags"><li>Подмышки</li><li>Бикини</li><li>Ноги до колен</li><li>Зона S</li></ul>
-          <a href="#" class="btn btn--dark btn--block" data-wa="Здравствуйте! Хочу записаться на комплекс №2. Подскажите, пожалуйста, свободное время." target="_blank" rel="noopener" aria-label="Записаться на комплекс №2 в WhatsApp">Записаться</a>
+        <article class="price reveal">
+          <span class="price__num">02</span>
+          <h3 class="price__name">Комплекс №2</h3>
+          <p class="price__zones">Подмышки, бикини, ноги до колен, зона S</p>
+          <p class="price__value">22 000 ₸</p>
+          <a href="#" class="btn btn--rose btn--block" data-wa="Здравствуйте! Хочу записаться на комплекс №2. Подскажите, пожалуйста, свободное время." target="_blank" rel="noopener" aria-label="Записаться на комплекс №2 в WhatsApp">Записаться</a>
         </article>
-
-        <article class="price-card reveal">
-          <div class="price-card__top"><span class="price-card__num">03</span><span class="price-card__label">Комплекс №3</span></div>
-          <p class="price-card__price">25 000 <span>₸</span></p>
-          <ul class="tags"><li>Подмышки</li><li>Бикини</li><li>Ноги полностью</li><li>Зона S</li></ul>
-          <a href="#" class="btn btn--dark btn--block" data-wa="Здравствуйте! Хочу записаться на комплекс №3. Подскажите, пожалуйста, свободное время." target="_blank" rel="noopener" aria-label="Записаться на комплекс №3 в WhatsApp">Записаться</a>
+        <article class="price reveal">
+          <span class="price__num">03</span>
+          <h3 class="price__name">Комплекс №3</h3>
+          <p class="price__zones">Подмышки, бикини, ноги полностью, зона S</p>
+          <p class="price__value">25 000 ₸</p>
+          <a href="#" class="btn btn--rose btn--block" data-wa="Здравствуйте! Хочу записаться на комплекс №3. Подскажите, пожалуйста, свободное время." target="_blank" rel="noopener" aria-label="Записаться на комплекс №3 в WhatsApp">Записаться</a>
         </article>
-
-        <article class="price-card reveal">
-          <div class="price-card__top"><span class="price-card__num">04</span><span class="price-card__label">Комплекс №4</span></div>
-          <p class="price-card__price">27 000 <span>₸</span></p>
-          <ul class="tags"><li>Подмышки</li><li>Бикини</li><li>Ноги</li><li>Руки до локтя</li><li>Зона S</li></ul>
-          <a href="#" class="btn btn--dark btn--block" data-wa="Здравствуйте! Хочу записаться на комплекс №4. Подскажите, пожалуйста, свободное время." target="_blank" rel="noopener" aria-label="Записаться на комплекс №4 в WhatsApp">Записаться</a>
+        <article class="price reveal">
+          <span class="price__num">04</span>
+          <h3 class="price__name">Комплекс №4</h3>
+          <p class="price__zones">Подмышки, бикини, ноги и руки до локтя, зона S</p>
+          <p class="price__value">27 000 ₸</p>
+          <a href="#" class="btn btn--rose btn--block" data-wa="Здравствуйте! Хочу записаться на комплекс №4. Подскажите, пожалуйста, свободное время." target="_blank" rel="noopener" aria-label="Записаться на комплекс №4 в WhatsApp">Записаться</a>
         </article>
-
-        <article class="price-card reveal">
-          <div class="price-card__top"><span class="price-card__num">05</span><span class="price-card__label">Комплекс №5</span></div>
-          <p class="price-card__price">29 000 <span>₸</span></p>
-          <ul class="tags"><li>Подмышки</li><li>Бикини</li><li>Ноги полностью</li><li>Руки полностью</li><li>Зона S</li></ul>
-          <a href="#" class="btn btn--dark btn--block" data-wa="Здравствуйте! Хочу записаться на комплекс №5. Подскажите, пожалуйста, свободное время." target="_blank" rel="noopener" aria-label="Записаться на комплекс №5 в WhatsApp">Записаться</a>
+        <article class="price reveal">
+          <span class="price__num">05</span>
+          <h3 class="price__name">Комплекс №5</h3>
+          <p class="price__zones">Подмышки, бикини, ноги и руки полностью, зона S</p>
+          <p class="price__value">29 000 ₸</p>
+          <a href="#" class="btn btn--rose btn--block" data-wa="Здравствуйте! Хочу записаться на комплекс №5. Подскажите, пожалуйста, свободное время." target="_blank" rel="noopener" aria-label="Записаться на комплекс №5 в WhatsApp">Записаться</a>
         </article>
-
-        <article class="price-card price-card--accent reveal">
-          <div class="price-card__top"><span class="price-card__num">06</span><span class="price-card__label">Комплекс №6</span></div>
-          <p class="price-card__price">36 000 <span>₸</span></p>
-          <ul class="tags"><li>Всё тело</li></ul>
-          <a href="#" class="btn btn--light btn--block" data-wa="Здравствуйте! Хочу записаться на комплекс №6. Подскажите, пожалуйста, свободное время." target="_blank" rel="noopener" aria-label="Записаться на комплекс №6 в WhatsApp">Записаться</a>
+        <article class="price price--accent reveal">
+          <span class="price__num">06</span>
+          <h3 class="price__name">Комплекс №6</h3>
+          <p class="price__zones">Всё тело</p>
+          <p class="price__value">36 000 ₸</p>
+          <a href="#" class="btn btn--cream btn--block" data-wa="Здравствуйте! Хочу записаться на комплекс №6. Подскажите, пожалуйста, свободное время." target="_blank" rel="noopener" aria-label="Записаться на комплекс №6 в WhatsApp">Записаться</a>
         </article>
       </div>
 
-      <p class="prices__note reveal">
-        <svg class="icon" aria-hidden="true"><use href="#i-info"/></svg>
-        Актуальные цены и состав комплексов уточняйте у администратора.
-        <span>Прайс от 1 августа 2025 г.</span>
-      </p>
+      <p class="prices__note reveal">Актуальные цены и состав комплексов уточняйте у администратора.<span>Прайс от 1 августа 2025 г.</span></p>
     </div>
   </section>
 
   <!-- ============ 4. КАК ПРОХОДИТ ПРОЦЕДУРА ============ -->
-  <section class="split split--reverse section section--milk" id="procedure" aria-labelledby="procedure-title">
-    <div class="split__media reveal">
-      <!-- ФОТО ПРОЦЕДУРЫ: images/procedure.jpg — лучше заменить на фото кабинета/аппарата -->
-      <img src="images/procedure.jpg" alt="Специалист проводит косметологическую процедуру в стерильных перчатках" loading="lazy" width="1400" height="934">
-      <span class="photo-note">Временное фото — замените на фото кабинета</span>
-    </div>
-    <div class="split__text">
-      <p class="eyebrow reveal">Процедура</p>
-      <h2 class="h2 reveal" id="procedure-title">Как проходит <em>процедура</em></h2>
-      <ol class="steps">
-        <li class="step reveal">
-          <span class="step__num">01</span>
-          <div><h3>Консультация</h3><p>Обсуждаем зоны, отвечаем на вопросы и уточняем противопоказания.</p></div>
-        </li>
-        <li class="step reveal">
-          <span class="step__num">02</span>
-          <div><h3>Подготовка</h3><p>Специалист подготавливает кожу и объясняет, как пройдёт сеанс.</p></div>
-        </li>
-        <li class="step reveal">
-          <span class="step__num">03</span>
-          <div><h3>Лазерная эпиляция</h3><p>Обработка выбранных зон диодным лазером. Ощущения у каждого индивидуальны.</p></div>
-        </li>
-        <li class="step reveal">
-          <span class="step__num">04</span>
-          <div><h3>Уход после</h3><p>Даём рекомендации по уходу за кожей после процедуры.</p></div>
-        </li>
-      </ol>
-      <a href="#" class="btn btn--dark reveal" data-wa="Здравствуйте! Хочу записаться на консультацию по лазерной эпиляции." target="_blank" rel="noopener">Записаться на консультацию</a>
+  <section class="procedure section section--rose" id="procedure" aria-labelledby="procedure-title">
+    <div class="container procedure__inner">
+      <!-- ФОТО ПРОЦЕДУРЫ: photo-legs.jpg -->
+      <figure class="procedure__photo photo reveal">
+        <img src="images/photo-legs.jpg" alt="Лазерная эпиляция ног: специалист в перчатках работает манипулой диодного лазера" loading="lazy" width="564" height="845">
+      </figure>
+      <div class="procedure__text">
+        <h2 class="title title--light reveal" id="procedure-title"><span class="script">Как проходит</span> процедура</h2>
+        <ol class="rows">
+          <li class="row reveal"><span class="row__num">01</span><span><strong>Консультация</strong>Обсуждаем зоны, отвечаем на вопросы и уточняем противопоказания.</span></li>
+          <li class="row reveal"><span class="row__num">02</span><span><strong>Подготовка</strong>Специалист подготавливает кожу и объясняет, как пройдёт сеанс.</span></li>
+          <li class="row reveal"><span class="row__num">03</span><span><strong>Лазерная эпиляция</strong>Обработка выбранных зон диодным лазером. Ощущения у каждого индивидуальны.</span></li>
+          <li class="row reveal"><span class="row__num">04</span><span><strong>Уход после</strong>Даём рекомендации по уходу за кожей после процедуры.</span></li>
+        </ol>
+        <a href="#" class="btn btn--cream reveal" data-wa="Здравствуйте! Хочу записаться на консультацию по лазерной эпиляции." target="_blank" rel="noopener">Записаться на консультацию</a>
+      </div>
     </div>
   </section>
 
@@ -207,14 +180,10 @@
   <section class="faq section" id="faq" aria-labelledby="faq-title">
     <div class="container faq__inner">
       <div class="faq__head">
-        <p class="eyebrow reveal">Вопросы</p>
-        <h2 class="h2 reveal" id="faq-title">Вопросы <em>и&nbsp;ответы</em></h2>
-        <p class="reveal">Не нашли ответ? Напишите нам — администратор подскажет.</p>
+        <h2 class="title reveal" id="faq-title"><span class="script">Вопросы</span> и ответы</h2>
+        <p class="section__lead reveal">Подготовку, противопоказания и индивидуальные особенности обязательно обсудите со специалистом до процедуры.</p>
         <a href="#" class="btn btn--outline reveal" data-wa="Здравствуйте! У меня есть вопрос о лазерной эпиляции." target="_blank" rel="noopener">Задать вопрос</a>
-        <!-- Фото гладкой кожи: images/skin.jpg -->
-        <img class="faq__img reveal" src="images/skin.jpg" alt="Ухоженные руки с гладкой кожей на мягкой ткани" loading="lazy" width="1200" height="800">
       </div>
-
       <div class="accordion">
         <details class="acc reveal">
           <summary>Как подготовиться к лазерной эпиляции?</summary>
@@ -244,22 +213,20 @@
     </div>
   </section>
 
-  <!-- ============ 6. INSTAGRAM ============
-       Временные фото: images/insta-1.jpg … insta-4.jpg — замените на фото из Instagram студии -->
-  <section class="insta section" id="instagram" aria-labelledby="insta-title">
-    <div class="container insta__inner">
-      <p class="insta__script reveal" aria-hidden="true">laserspot<br>community</p>
-      <div class="polaroids">
-        <figure class="polaroid polaroid--1 reveal"><img src="images/insta-1.jpg" alt="Девушка с ухоженными волосами в светлом интерьере" loading="lazy" width="700" height="560"></figure>
-        <figure class="polaroid polaroid--2 reveal"><img src="images/insta-2.jpg" alt="Мягкое полотенце, флакон и розовые тюльпаны" loading="lazy" width="700" height="467"></figure>
-        <figure class="polaroid polaroid--3 reveal"><img src="images/insta-3.jpg" alt="Портрет девушки с естественным макияжем" loading="lazy" width="700" height="1050"></figure>
-        <figure class="polaroid polaroid--4 reveal"><img src="images/insta-4.jpg" alt="Руки специалиста во время ухода за кожей" loading="lazy" width="700" height="467"></figure>
-        <span class="insta__xo" aria-hidden="true">xo</span>
+  <!-- ============ 6. INSTAGRAM ============ -->
+  <section class="insta section section--rose" id="instagram" aria-labelledby="insta-title">
+    <div class="container">
+      <h2 class="title title--light reveal" id="insta-title"><span class="script">Больше о нашей студии</span> в Instagram</h2>
+      <!-- ФОТО ГАЛЕРЕИ: те же файлы из папки images -->
+      <div class="gallery">
+        <figure class="photo gallery__a reveal"><img src="images/photo-underarm.jpg" alt="Процедура лазерной эпиляции зоны подмышек" loading="lazy" width="720" height="1280"></figure>
+        <figure class="photo gallery__b reveal"><img src="images/photo-device.jpg" alt="Аппарат диодного лазера в студии" loading="lazy" width="828" height="940"></figure>
+        <figure class="photo gallery__c reveal"><img src="images/photo-face.jpg" alt="Лазерная эпиляция зоны над верхней губой" loading="lazy" width="933" height="1400"></figure>
+        <figure class="photo gallery__d reveal"><img src="images/photo-legs.jpg" alt="Лазерная эпиляция ног" loading="lazy" width="564" height="845"></figure>
       </div>
-      <div class="insta__text">
-        <h2 class="h2 reveal" id="insta-title">Больше о нашей студии — <em>в&nbsp;Instagram</em></h2>
-        <p class="reveal">Процедуры, ответы на вопросы и жизнь студии — подписывайтесь на <a href="https://www.instagram.com/laserspot_atyrau/" target="_blank" rel="noopener">@laserspot_atyrau</a>.</p>
-        <a href="https://www.instagram.com/laserspot_atyrau/" class="btn btn--dark reveal" target="_blank" rel="noopener">
+      <div class="insta__cta reveal">
+        <p>Процедуры, ответы на вопросы и жизнь студии — <a href="https://www.instagram.com/laserspot_atyrau/" target="_blank" rel="noopener">@laserspot_atyrau</a></p>
+        <a href="https://www.instagram.com/laserspot_atyrau/" class="btn btn--cream" target="_blank" rel="noopener">
           <svg class="icon" aria-hidden="true"><use href="#i-ig"/></svg>Перейти в Instagram
         </a>
       </div>
@@ -270,10 +237,7 @@
   <section class="contacts section" id="contacts" aria-labelledby="contacts-title">
     <div class="container contacts__inner">
       <div class="contacts__card reveal">
-        <p class="eyebrow eyebrow--light">Контакты</p>
-        <h2 class="h2" id="contacts-title">Laser <em>Spot</em></h2>
-        <p class="contacts__sub">Студия лазерной эпиляции · Атырау</p>
-
+        <h2 class="title" id="contacts-title"><span class="script">Контакты</span> Laser Spot</h2>
         <dl class="contacts__list">
           <div><dt>Город</dt><dd>Атырау</dd></div>
           <!-- АДРЕС: замените текст ниже на точный адрес -->
@@ -283,15 +247,14 @@
           <div><dt>WhatsApp</dt><dd><a href="#" data-wa="Здравствуйте! Хочу записаться на лазерную эпиляцию." target="_blank" rel="noopener">+7 702 582 98 89</a></dd></div>
           <div><dt>Instagram</dt><dd><a href="https://www.instagram.com/laserspot_atyrau/" target="_blank" rel="noopener">@laserspot_atyrau</a></dd></div>
         </dl>
-
         <div class="contacts__buttons">
-          <a href="#" class="btn btn--light" data-wa="Здравствуйте! Хочу записаться на лазерную эпиляцию. Подскажите, пожалуйста, свободное время." target="_blank" rel="noopener">
+          <a href="#" class="btn btn--rose" data-wa="Здравствуйте! Хочу записаться на лазерную эпиляцию. Подскажите, пожалуйста, свободное время." target="_blank" rel="noopener">
             <svg class="icon" aria-hidden="true"><use href="#i-wa"/></svg>Написать в WhatsApp
           </a>
-          <a href="https://www.instagram.com/laserspot_atyrau/" class="btn btn--ghost-light" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.instagram.com/laserspot_atyrau/" class="btn btn--outline" target="_blank" rel="noopener">Instagram</a>
         </div>
       </div>
-      <div class="contacts__media reveal">
+      <div class="contacts__logo reveal">
         <img src="images/logo.png" alt="Логотип LASER SPOT — студия лазерной эпиляции" loading="lazy" width="496" height="496">
       </div>
     </div>
@@ -301,10 +264,7 @@
 <!-- ============ ПОДВАЛ ============ -->
 <footer class="footer">
   <div class="container footer__inner">
-    <a href="#top" class="logo logo--footer" aria-label="LASER SPOT — наверх">
-      <img src="images/logo.png" alt="" width="44" height="44" class="logo__mark">
-      <span class="logo__text">Laser<span>Spot</span></span>
-    </a>
+    <p class="footer__brand">Laser Spot</p>
     <nav aria-label="Меню в подвале">
       <ul class="footer__nav">
         <li><a href="#about">О нас</a></li>
@@ -325,7 +285,7 @@
   </div>
 </footer>
 
-<!-- Фиксированная кнопка записи (видна на телефоне) -->
+<!-- Фиксированная кнопка записи -->
 <a href="#" class="wa-float" data-wa="Здравствуйте! Хочу записаться на лазерную эпиляцию. Подскажите, пожалуйста, свободное время." target="_blank" rel="noopener" aria-label="Записаться в WhatsApp">
   <svg class="icon" aria-hidden="true"><use href="#i-wa"/></svg><span>Записаться в WhatsApp</span>
 </a>
@@ -334,7 +294,7 @@
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.7 8.23-8.23 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28Z"/></symbol>
   <symbol id="i-ig" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M7 2.9h10A4.1 4.1 0 0 1 21.1 7v10a4.1 4.1 0 0 1-4.1 4.1H7A4.1 4.1 0 0 1 2.9 17V7A4.1 4.1 0 0 1 7 2.9Z"/><circle cx="12" cy="12" r="4.1" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor"/></symbol>
-  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 10.5v6M12 7.4v.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11Z"/><circle cx="12" cy="10" r="2.3" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
 </svg>
 
 <script src="script.js" defer></script>
