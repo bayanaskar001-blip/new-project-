@@ -11,7 +11,8 @@ INK = (20, 20, 22)
 WHITE = (255, 255, 255)
 DARK = (58, 58, 60)
 UP = "/root/.claude/uploads/72d83ebe-2a17-52b5-8f9f-dcdf689494a5/"
-B = "/tmp/claude-0/-home-user-new-project-/72d83ebe-2a17-52b5-8f9f-dcdf689494a5/scratchpad/build/"
+import os
+B = os.path.dirname(os.path.abspath(__file__)) + "/"
 F_BLACK = "/usr/share/fonts/opentype/inter/InterDisplay-Black.otf"
 F_SMALL = "/usr/share/fonts/opentype/inter/Inter-SemiBold.otf"
 
@@ -23,7 +24,7 @@ PH = {k: ImageOps.exif_transpose(v) for k, v in PH.items()}
 
 WORDS = json.load(open(B + "words.json"))
 def ws(i): return WORDS[i][1]          # word start time
-VOICE_END = 48.34
+VOICE_END = WORDS[-1][2] + 0.8
 TOTAL = VOICE_END + 3.2
 
 # ---------- clip frames ----------
@@ -141,7 +142,7 @@ def ig_icon(size, color, gradient=False):
 def watermark(canvas, on_photo):
     col = WHITE if on_photo else (200, 198, 204)
     paste_c(canvas, ig_icon(46, col), W - 120, 150)
-    paste_c(canvas, small("БАЯН", 22, col), W - 120, 196)
+    paste_c(canvas, small("@BAYANA_ASKAR", 20, col), W - 120, 196)
 
 # ---------- scenes ----------
 def scenes():
@@ -323,7 +324,7 @@ def scenes():
     add(ws(95) - 0.05, s19)
 
     # 20. small name
-    def s20(c, t): paste_c(c, small("баян", 34), W/2, 960)
+    def s20(c, t): paste_c(c, small("bayana_askar", 34), W/2, 960)
     add(VOICE_END - 0.4, s20)
     add(VOICE_END + 0.4, ("outro", None, None), True)
     return sorted(S, key=lambda s: s[0])
@@ -341,7 +342,7 @@ def frame(t):
         icon = ig_icon(220, WHITE, gradient=grad)
         sc = 1 + 0.06*math.sin(min(k, 1.4)/1.4*math.pi) if grad else 1
         paste_c(c, icon, W/2, 900, sc)
-        paste_c(c, small("БАЯН", 52, WHITE), W/2, 1080)
+        paste_c(c, small("@BAYANA_ASKAR", 52, WHITE), W/2, 1080)
         return c.convert("RGB")
     if isinstance(fn, tuple):
         kind, ph, draw = fn[0], fn[1], fn[2]

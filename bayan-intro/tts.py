@@ -11,13 +11,13 @@ TEXT = ("Привет! Меня зовут Баян. "
 "Не знаю, куда он меня приведёт, но предлагаю пройти его вместе. "
 "Подписывайся — будем знакомиться!")
 async def main():
-    c = edge_tts.Communicate(TEXT, "ru-RU-SvetlanaNeural", rate="+8%", boundary="WordBoundary")
+    c = edge_tts.Communicate(TEXT, "ru-RU-SvetlanaNeural", rate="+14%", pitch="+18Hz", boundary="WordBoundary")
     words=[]
-    with open("build/voice.mp3","wb") as f:
+    with open("voice.mp3","wb") as f:
         async for ch in c.stream():
             if ch["type"]=="audio": f.write(ch["data"])
             elif ch["type"]=="WordBoundary":
                 words.append([ch["text"], ch["offset"]/1e7, (ch["offset"]+ch["duration"])/1e7])
-    json.dump(words, open("build/words.json","w"), ensure_ascii=False)
+    json.dump(words, open("words.json","w"), ensure_ascii=False)
     for i,w in enumerate(words): print(i, w[0], round(w[1],2), round(w[2],2))
 asyncio.run(main())
