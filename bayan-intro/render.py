@@ -19,7 +19,8 @@ F_SMALL = "/usr/share/fonts/opentype/inter/Inter-SemiBold.otf"
 PH = {k: Image.open(UP + v).convert("RGB") for k, v in {
     "read": "e4f536ec-image.jpg", "book": "e58bf32c-image.jpg", "kitchen": "acafdf5f-image.jpg",
     "laptop": "f87c14d0-image.jpg", "counter": "3d80ca09-image.jpg", "pizza": "d6e6f985-image.jpg",
-    "studio": "1ab7ea95-image.jpg"}.items()}
+    "studio": "1ab7ea95-image.jpg", "tea": "0428ee83-image.jpg", "tether": "1cb0695a-image.jpg",
+    "bag": "4379cbad-image.jpg", "lookbook": "81c72a33-image.jpg", "cat": "2e81a2dc-image.jpg", "case": "a48e47dc-image.jpg"}.items()}
 PH = {k: ImageOps.exif_transpose(v) for k, v in PH.items()}
 
 WORDS = json.load(open(B + "words.json"))
@@ -176,7 +177,7 @@ def scenes():
 
     # 3. фотограф
     def s3(c, t): pop(c, fit_text("фотограф,", 940, 230, WHITE), W/2, 960, t, ws(5))
-    add(ws(4) - 0.05, ("full", "studio", s3), True)
+    add(ws(4) - 0.05, ("full", "tether", s3, 0.07, (0.5, 0.55)), True)
 
     # 4. SMM-специалист
     def s4(c, t):
@@ -207,15 +208,16 @@ def scenes():
     # 7. помогаю бизнесам развивать свои СТРА-НИЦЫ
     def s7(c, t):
         acc(c, [("помогаю", 22), ("бизнесам", 23), ("развивать", 24), ("свои", 25)], 470, t=t)
-        card_in(c, "laptop", 560, 760, W/2, 1000, t, ws(22), rot=0)
+        card_in(c, "lookbook", 560, 760, W/2, 1000, t, ws(22), rot=0)
         pop(c, fit_text("стра", 420, 190), 220, 640, t, ws(26))
         pop(c, fit_text("ницы", 440, 190), 860, 1380, t, ws(26) + 0.16)
     add(ws(22) - 0.05, s7)
 
     # 8. и запускаю рекламу
     def s8(c, t):
-        paste_c(c, small("и запускаю", 46), W/2, 820)
-        pop(c, fit_text("рекламу", 980, 260), W/2, 1000, t, ws(29))
+        card_in(c, "case", 560, 720, W/2, 760, t, ws(27) - 0.03, rot=-4)
+        paste_c(c, small("и запускаю", 46), W/2, 1260)
+        pop(c, fit_text("рекламу", 980, 260), W/2, 1440, t, ws(29))
     add(ws(27) - 0.03, s8)
 
     # 9. а ещё обучаю других тому, что умею сама
@@ -268,7 +270,7 @@ def scenes():
     def s13(c, t):
         paste_c(c, small("я люблю", 50, WHITE), W/2, 1300)
         pop(c, fit_text("читать книги", 980, 170, WHITE), W/2, 1440, t, ws(62))
-    add(ws(60) - 0.05, ("full", "read", s13, 0.05, (0.6, 0.4)), True)
+    add(ws(60) - 0.05, ("full", "tea", s13, 0.05, (0.5, 0.6)), True)
 
     # 14. готовить что-нибудь вкусное
     def s14(c, t):
@@ -293,7 +295,7 @@ def scenes():
         pop(c, fit_text("вдохновляет", 980, 210), W/2, 1000, t, ws(81))
     add(ws(72) - 0.05, s16)
     head = lambda c: paste_c(c, small("в этом блоге:", 46), W/2, 330)
-    topics = [(82, [("работой,", 82)], "studio", 6), (83, [("обычными", 83), ("днями,", 84)], "kitchen", -6),
+    topics = [(82, [("работой,", 82)], "studio", 6), (83, [("обычными", 83), ("днями,", 84)], "bag", -6),
               (85, [("мыслями,", 85)], "laptop", 5), (86, [("мечтами", 86)], "read", -5),
               (87, [("и новыми", 87), ("начинаниями", 89)], "counter", 4)]
     for wi, lines, ph, rot in topics:
@@ -307,7 +309,8 @@ def scenes():
     # 17. честно?
     def s17(c, t):
         jit = math.sin(t * 55) * 7 if t < ws(90) + 0.3 else 0
-        pop(c, fit_text("честно?", 960, 290), W/2 + jit, 960, t, ws(90), rot=-4)
+        card_in(c, "cat", 600, 800, W/2, 800, t, ws(90) - 0.05, rot=3)
+        pop(c, fit_text("честно?", 960, 290), W/2 + jit, 1470, t, ws(90), rot=-4)
     add(ws(90) - 0.05, s17)
 
     # 18. я пока не знаю, к чему всё это приведёт (клип)
