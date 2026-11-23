@@ -79,7 +79,10 @@ def paste_c(canvas, layer, cx, cy, scale=1.0, alpha=1.0, rot=0.0, blur=0.0):
         a = layer.getchannel("A").point(lambda v: int(v * alpha)); layer = layer.copy(); layer.putalpha(a)
     canvas.alpha_composite(layer, (int(cx - layer.width/2), int(cy - layer.height/2)))
 
+EVENTS = set()
+
 def pop(canvas, layer, cx, cy, t, t0, rot=0.0, blur_in=True, dur=0.16):
+    if t >= t0: EVENTS.add(("pop", round(t0, 3)))
     """Template-style word entrance: scale down from 1.25 with a quick blur."""
     if t < t0: return
     k = ease_out((t - t0) / dur)
@@ -100,6 +103,7 @@ def card(name, w, h, radius=34):
     return out
 
 def card_in(canvas, name, w, h, cx, cy, t, t0, rot=0.0, dur=0.28):
+    if t >= t0: EVENTS.add(("whoosh", round(t0 - 0.12, 3)))
     if t < t0: return
     k = back_out((t - t0) / dur)
     paste_c(canvas, card(name, w, h), cx, cy, 0.55 + 0.45*k, min(1, (t-t0)/0.08), rot)
@@ -164,6 +168,7 @@ def scenes():
         pop(c, fit_text("меня", 500, 190), 330, 560, t, ws(1))
         pop(c, fit_text("зовут", 520, 190), 330, 1060, t, ws(2))
         if t >= ws(3):
+            EVENTS.add(("boom", ws(3)))
             k = ease_out((t - ws(3)) / 0.22)
             lay = text_layer("баян", 620, RED, squeeze=0.9)
             paste_c(c, lay, W/2, 1480, (W*1.02/lay.width) * (1.3 - 0.3*k), 1, 0, (1-k)*18)
@@ -242,6 +247,7 @@ def scenes():
     def s11b(c, t):
         pop(c, fit_text("что-то", 600, 150), W/2, 760, t, ws(51))
         if t >= ws(52):
+            EVENTS.add(("boom", ws(52)))
             k = ease_out((t - ws(52)) / 0.25)
             lay = text_layer("большое", 620, RED, squeeze=0.9)
             paste_c(c, lay, W/2, 1000, (W*1.04/lay.width) * (1.35 - 0.35*k), 1, 0, (1-k)*18)
@@ -328,6 +334,7 @@ def frame(t):
     i = max(k for k, s in enumerate(SC) if s[0] <= t + 1e-6)
     t0, fn, photo = SC[i]
     t1 = SC[i+1][0] if i + 1 < len(SC) else TOTAL
+    if isinstance(fn, tuple): EVENTS.add(("chime" if fn[0] == "outro" else "swish", round(t0, 3)))
     if isinstance(fn, tuple) and fn[0] == "outro":
         c = Image.new("RGBA", (W, H), DARK + (255,))
         k = (t - t0)
@@ -362,12 +369,23 @@ if __name__ == "__main__":
         sys.exit()
     a, b = (float(sys.argv[2]), float(sys.argv[3])) if len(sys.argv) > 3 else (0, TOTAL)
     n = int((b - a) * FPS)
+    tmpv = B + "_video.mp4"
     ff = subprocess.Popen(["ffmpeg", "-v", "error", "-y", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{W}x{H}",
-                           "-r", str(FPS), "-i", "-", "-ss", str(a), "-t", str(b - a), "-i", B + "audio.m4a",
-                           "-map", "0:v", "-map", "1:a", "-c:v", "libx264", "-preset", "medium", "-crf", "19",
-                           "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "192k", "-shortest", "-movflags", "+faststart", out],
-                          stdin=subprocess.PIPE)
+                           "-r", str(FPS), "-i", "-", "-c:v", "libx264", "-preset", "medium", "-crf", "19",
+                           "-pix_fmt", "yuv420p", tmpv], stdin=subprocess.PIPE)
     for k in range(n):
         ff.stdin.write(frame(a + k / FPS).tobytes())
         if k % 150 == 0: print(f"{k}/{n}", flush=True)
     ff.stdin.close(); ff.wait()
+    import sfx
+    sfx.build(EVENTS, TOTAL, B + "_sfx.wav")
+    # voice on top, effects underneath; trim to the rendered range
+    subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", tmpv, "-i", B + "voice.mp3", "-i", B + "_sfx.wav",
+                    "-filter_complex",
+                    f"[1:a]aformat=channel_layouts=stereo,loudnorm=I=-15:TP=-2,apad[v];"
+                    f"[2:a]aformat=channel_layouts=stereo,volume=0.9[s];"
+                    f"[v][s]amix=inputs=2:duration=longest:normalize=0,alimiter=limit=0.95,"
+                    f"atrim=start={a}:end={b},asetpts=PTS-STARTPTS[a]",
+                    "-map", "0:v", "-map", "[a]", "-c:v", "copy", "-c:a", "aac", "-b:a", "192k",
+                    "-movflags", "+faststart", out], check=True)
+    os.remove(tmpv); os.remove(B + "_sfx.wav")
