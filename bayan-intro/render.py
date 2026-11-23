@@ -148,6 +148,9 @@ def watermark(canvas, on_photo):
 def scenes():
     S = []
     def add(t0, fn, photo=False): S.append((t0, fn, photo))
+    def acc(c, pairs, y, size=46, color=INK, t=0):
+        txt = " ".join(w for w, i in pairs if t >= ws(i))
+        if txt: paste_c(c, small(txt, size, color), W/2, y)
 
     # 1. привет
     def s1(c, t):
@@ -157,175 +160,165 @@ def scenes():
 
     # 2. меня зовут БАЯН
     def s2(c, t):
-        card_in(c, "laptop", 400, 540, 760, 760, t, 1.5, rot=-6)
+        card_in(c, "laptop", 400, 540, 760, 760, t, ws(1) - 0.08, rot=-6)
         pop(c, fit_text("меня", 500, 190), 330, 560, t, ws(1))
         pop(c, fit_text("зовут", 520, 190), 330, 1060, t, ws(2))
         if t >= ws(3):
             k = ease_out((t - ws(3)) / 0.22)
             lay = text_layer("баян", 620, RED, squeeze=0.9)
             paste_c(c, lay, W/2, 1480, (W*1.02/lay.width) * (1.3 - 0.3*k), 1, 0, (1-k)*18)
-    add(1.5, s2)
+    add(ws(1) - 0.08, s2)
 
-    # 3. фотограф (на фото студии)
-    def s3(c, t):
-        pop(c, fit_text("фотограф", 940, 230, WHITE), W/2, 960, t, ws(5))
+    # 3. фотограф
+    def s3(c, t): pop(c, fit_text("фотограф,", 940, 230, WHITE), W/2, 960, t, ws(5))
     add(ws(4) - 0.05, ("full", "studio", s3), True)
 
-    def s3b(c, t):
-        paste_c(c, small("и", 46), W/2, 700)
-        pop(c, fit_text("SMM-", 800, 300), W/2, 880, t, ws(7))
-        pop(c, fit_text("специалист", 960, 200), W/2, 1130, t, ws(8))
-    add(ws(6), s3b)
-
-    # 4. новые идеи + collage
+    # 4. SMM-специалист
     def s4(c, t):
-        line1 = ["а", "ещё", "человек,", "у", "которого", "в", "голове"]
-        line2 = ["постоянно", "появляются"]
-        idx = [9, 10, 11, 12, 13, 14, 15]
-        shown1 = " ".join(w for w, i in zip(line1, idx) if t >= ws(i))
-        shown2 = " ".join(w for w, i in zip(line2, [16, 17]) if t >= ws(i))
-        if shown1: paste_c(c, small(shown1, 44), W/2, 880 if t < ws(18) else 820)
-        if shown2: paste_c(c, small(shown2, 44), W/2, 940 if t < ws(18) else 880)
-        if t >= ws(18):
-            card_in(c, "book", 260, 340, 230, 470, t, ws(18), rot=7)
-            card_in(c, "counter", 360, 260, 800, 430, t, ws(18)+0.12, rot=-5)
-            card_in(c, "pizza", 250, 330, 260, 1450, t, ws(18)+0.24, rot=-8)
-            card_in(c, "kitchen", 270, 360, 820, 1430, t, ws(18)+0.36, rot=6)
-        pop(c, fit_text("новые идеи", 980, 210), W/2, 1050, t, ws(18))
-    add(ws(9) - 0.05, s4)
+        pop(c, fit_text("SMM-", 800, 300), W/2, 880, t, ws(6))
+        pop(c, fit_text("специалист", 960, 200), W/2, 1130, t, ws(7))
+    add(ws(6) - 0.03, s4)
 
-    # 5. снимаю фото и видео (клип)
+    # 5. миллион идей
     def s5(c, t):
-        pop(c, fit_text("снимаю", 900, 200, WHITE), W/2, 560, t, ws(21))
-        pop(c, fit_text("фото и видео", 960, 150, WHITE), W/2, 1500, t, ws(22))
-    add(ws(20) - 0.05, ("clip", None, s5), True)
+        up = t >= ws(15)
+        acc(c, [("и", 8), ("человек,", 9), ("у", 10), ("которого", 11)], 820 if up else 900, t=t)
+        acc(c, [("в", 12), ("голове", 13), ("всегда", 14)], 880 if up else 960, t=t)
+        if up:
+            card_in(c, "book", 260, 340, 230, 470, t, ws(15), rot=7)
+            card_in(c, "counter", 360, 260, 800, 430, t, ws(15)+0.1, rot=-5)
+            card_in(c, "pizza", 250, 330, 260, 1470, t, ws(15)+0.2, rot=-8)
+            card_in(c, "kitchen", 270, 360, 820, 1450, t, ws(15)+0.3, rot=6)
+        pop(c, fit_text("миллион", 900, 230), W/2, 1020, t, ws(15))
+        pop(c, fit_text("идей", 600, 230), W/2, 1290, t, ws(16))
+    add(ws(8) - 0.03, s5)
 
-    # 6. помогаю бизнесам вести СОЦ-СЕТИ
+    # 6. снимаю фото и видео (клип)
     def s6(c, t):
-        txt = " ".join(w for w, i in [("помогаю", 25), ("бизнесам", 26), ("вести", 27)] if t >= ws(i))
-        paste_c(c, small(txt, 44), W/2, 470)
-        card_in(c, "laptop", 560, 760, W/2, 1000, t, ws(25), rot=0)
-        pop(c, fit_text("соц", 400, 190), 210, 640, t, ws(28))
-        pop(c, fit_text("сети", 420, 190), 870, 1380, t, ws(29))
-    add(ws(25) - 0.05, s6)
+        pop(c, fit_text("снимаю", 900, 200, WHITE), W/2, 560, t, ws(18))
+        pop(c, fit_text("фото и видео", 960, 150, WHITE), W/2, 1500, t, ws(19))
+    add(ws(17) - 0.05, ("clip", None, s6), True)
 
-    # 7. запускаю рекламу
+    # 7. помогаю бизнесам развивать свои СТРА-НИЦЫ
     def s7(c, t):
-        paste_c(c, small("и запускаю", 46), W/2, 820)
-        pop(c, fit_text("рекламу", 980, 260), W/2, 1000, t, ws(32))
-    add(ws(30), s7)
+        acc(c, [("помогаю", 22), ("бизнесам", 23), ("развивать", 24), ("свои", 25)], 470, t=t)
+        card_in(c, "laptop", 560, 760, W/2, 1000, t, ws(22), rot=0)
+        pop(c, fit_text("стра", 420, 190), 220, 640, t, ws(26))
+        pop(c, fit_text("ницы", 440, 190), 860, 1380, t, ws(26) + 0.16)
+    add(ws(22) - 0.05, s7)
 
-    # 8. делюсь знаниями, обучаю
+    # 8. и запускаю рекламу
     def s8(c, t):
-        txt = " ".join(w for w, i in [("делюсь", 33), ("своими", 34), ("знаниями", 35), ("и", 36)] if t >= ws(i))
-        paste_c(c, small(txt, 46), W/2, 780)
-        pop(c, fit_text("обучаю", 960, 270), W/2, 980, t, ws(37))
-        txt2 = " ".join(w for w, i in [("тому,", 38), ("что", 39), ("люблю", 40), ("сама:", 41)] if t >= ws(i))
-        if txt2: paste_c(c, small(txt2, 46), W/2, 1180)
-    add(ws(33) - 0.05, s8)
+        paste_c(c, small("и запускаю", 46), W/2, 820)
+        pop(c, fit_text("рекламу", 980, 260), W/2, 1000, t, ws(29))
+    add(ws(27) - 0.03, s8)
 
-    # 9. съёмке и продвижению
+    # 9. а ещё обучаю других тому, что умею сама
     def s9(c, t):
-        card_in(c, "studio", 420, 560, 300, 620, t, ws(42), rot=-7)
-        pop(c, fit_text("съёмке", 520, 170), 760, 560, t, ws(42))
-        paste_c(c, small("и", 46), W/2, 990) if t >= ws(43) else None
-        card_in(c, "laptop", 420, 560, 780, 1380, t, ws(44), rot=6)
-        pop(c, fit_text("продви-", 520, 150), 300, 1300, t, ws(44))
-        pop(c, fit_text("жению", 520, 150), 300, 1450, t, ws(44) + 0.15)
-    add(ws(42) - 0.05, s9)
+        acc(c, [("а", 30), ("ещё", 31)], 780, t=t)
+        pop(c, fit_text("обучаю", 960, 270), W/2, 980, t, ws(32))
+        acc(c, [("других", 33), ("тому,", 34), ("что", 35), ("умею", 36), ("сама", 37)], 1180, t=t)
+    add(ws(30) - 0.05, s9)
 
-    # 10. моя жизнь — это ...
+    # 10. мне нравится создавать / пробовать новое
     def s10(c, t):
-        paste_c(c, small("моя жизнь —" if t < ws(47) else "моя жизнь — это", 50), W/2, 960)
-    add(ws(45) - 0.05, s10)
-    flashes = [(48, "съёмки", "studio"), (49, "проекты", None), (50, "встречи", "laptop"),
-               (51, "семья", None), (52, "и планы,", "counter")]
-    for wi, word, ph in flashes:
-        def sf(c, t, wi=wi, word=word, ph=ph):
-            pop(c, fit_text(word, 960, 250, WHITE if ph else RED), W/2, 960, t, ws(wi), dur=0.1)
-        if ph: add(ws(wi) - 0.03, ("full", ph, sf), True)
-        else: add(ws(wi) - 0.03, sf)
+        acc(c, [("мне", 38), ("нравится", 39)], 420, t=t)
+        card_in(c, "studio", 520, 700, W/2, 900, t, ws(40) - 0.05, rot=-5)
+        pop(c, fit_text("создавать,", 960, 210), W/2, 1450, t, ws(40))
+    add(ws(38) - 0.05, s10)
+    def s10b(c, t):
+        pop(c, fit_text("пробовать", 960, 230), W/2, 860, t, ws(41), dur=0.1)
+        pop(c, fit_text("новое", 700, 260), W/2, 1100, t, ws(42), rot=-4)
+    add(ws(41) - 0.03, s10b)
 
-    # 11. меняются прямо посреди дня
+    # 11. из маленькой идеи ... БОЛЬШОЕ
     def s11(c, t):
-        txt = " ".join(w for w, i in [("которые", 54), ("иногда", 55), ("меняются", 56)] if t >= ws(i))
-        paste_c(c, small(txt, 46), W/2, 760)
-        pop(c, fit_text("прямо", 800, 220), W/2 - 120, 960, t, ws(57), rot=4)
-        if t >= ws(58):
-            jit = math.sin(t * 60) * 6 if t < ws(58) + 0.35 else 0
-            pop(c, fit_text("посреди дня", 980, 190), W/2 + jit, 1180, t, ws(58), rot=-3)
-    add(ws(54) - 0.05, s11)
+        acc(c, [("и", 43), ("наблюдать,", 44), ("как", 45), ("из", 46), ("маленькой", 47), ("идеи", 48)], 420, t=t)
+        acc(c, [("постепенно", 49), ("рождается", 50)], 480, t=t)
+        if t >= ws(47):
+            g = ease_out((t - ws(47)) / (ws(51) - ws(47)))   # card grows from tiny to big
+            paste_c(c, card("counter", 760, 540), W/2, 1000, 0.25 + 0.75*g, min(1, (t - ws(47))/0.1), -4 + 4*g)
+    add(ws(43) - 0.05, s11)
+    def s11b(c, t):
+        pop(c, fit_text("что-то", 600, 150), W/2, 760, t, ws(51))
+        if t >= ws(52):
+            k = ease_out((t - ws(52)) / 0.25)
+            lay = text_layer("большое", 620, RED, squeeze=0.9)
+            paste_c(c, lay, W/2, 1000, (W*1.04/lay.width) * (1.35 - 0.35*k), 1, 0, (1-k)*18)
+    add(ws(51) - 0.03, s11b)
 
-    # 12. замедлиться (чтение)
+    # 12. но моя жизнь — это не только работа
     def s12(c, t):
-        if t >= ws(60):
-            paste_c(c, small("а когда хочется", 46, WHITE), W/2, 1350)
-        pop(c, fit_text("замедлиться", 980, 170, WHITE), W/2, 1470, t, ws(63), dur=0.35)
-    add(ws(60) - 0.05, ("full", "read", s12, 0.04, (0.6, 0.4)), True)
+        acc(c, [("но", 53), ("моя", 54), ("жизнь", 55), ("— это", 56)], 760, t=t)
+        pop(c, fit_text("не только", 960, 200), W/2, 960, t, ws(57))
+        pop(c, fit_text("работа", 900, 250), W/2, 1180, t, ws(59), rot=-3)
+        if t >= ws(59) + 0.35:   # hand-drawn strike-through
+            k = ease_out((t - ws(59) - 0.35) / 0.2)
+            d = ImageDraw.Draw(c); x0 = W/2 - 330
+            d.line((x0, 1200, x0 + 660*k, 1165), fill=INK + (255,), width=14)
+    add(ws(53) - 0.05, s12)
 
-    # 13. беру книгу
+    # 13. я люблю читать книги
     def s13(c, t):
-        paste_c(c, small("я беру", 46), W/2, 400)
-        card_in(c, "book", 560, 780, W/2, 980, t, ws(64) - 0.05, rot=-4)
-        pop(c, fit_text("книгу", 700, 260), W/2 + 60, 1480, t, ws(66), rot=-6)
-    add(ws(64) - 0.05, s13)
+        paste_c(c, small("я люблю", 50, WHITE), W/2, 1300)
+        pop(c, fit_text("читать книги", 980, 170, WHITE), W/2, 1440, t, ws(62))
+    add(ws(60) - 0.05, ("full", "read", s13, 0.05, (0.6, 0.4)), True)
 
-    # 14. или готовлю что-нибудь вкусное
+    # 14. готовить что-нибудь вкусное
     def s14(c, t):
-        paste_c(c, small("или", 46), W/2, 420)
-        card_in(c, "counter", 860, 580, W/2, 900, t, ws(67), rot=3)
-        pop(c, fit_text("готовлю", 900, 220), W/2, 1400, t, ws(68))
-    add(ws(67) - 0.03, s14)
-
+        card_in(c, "counter", 860, 580, W/2, 860, t, ws(64) - 0.05, rot=3)
+        pop(c, fit_text("готовить", 900, 230), W/2, 1380, t, ws(64))
+    add(ws(64) - 0.05, s14)
     def s14b(c, t):
         paste_c(c, small("что-нибудь", 48, WHITE), W/2, 1300)
-        pop(c, fit_text("вкусное", 960, 250, WHITE), W/2, 1470, t, ws(70))
-    add(ws(69) - 0.03, ("full", "pizza", s14b), True)
+        pop(c, fit_text("вкусное", 960, 250, WHITE), W/2, 1470, t, ws(66))
+    add(ws(65) - 0.03, ("full", "pizza", s14b), True)
 
-    # 15. здесь будет про ...
-    head = lambda c: paste_c(c, small("здесь будет про", 46), W/2, 330)
-    def s15(c, t): head(c)
-    add(ws(71) - 0.05, s15)
-    topics = [(74, "работу", "studio", 6), (75, "обучение", "laptop", -6), (76, "личную жизнь", "kitchen", 5),
-              (78, "книги", "book", -5), (79, "готовку", "pizza", 6), (80, "мечты", "read", -4)]
-    for wi, word, ph, rot in topics:
-        def st(c, t, wi=wi, word=word, ph=ph, rot=rot):
+    # 15. и находить время для близких
+    def s15(c, t):
+        acc(c, [("и", 67), ("находить", 68), ("время", 69), ("для", 70)], 1300, 50, WHITE, t)
+        pop(c, fit_text("близких", 900, 240, WHITE), W/2, 1470, t, ws(71), dur=0.3)
+    add(ws(67) - 0.03, ("full", "kitchen", s15, 0.05, (0.5, 0.4), 0.3), True)
+
+    # 16. в этом блоге ... вдохновляет
+    def s16(c, t):
+        acc(c, [("в", 72), ("этом", 73), ("блоге", 74), ("я", 75), ("хочу", 76), ("делиться", 77)], 760, t=t)
+        acc(c, [("всем,", 78), ("что", 79), ("меня", 80)], 820, t=t)
+        pop(c, fit_text("вдохновляет", 980, 210), W/2, 1000, t, ws(81))
+    add(ws(72) - 0.05, s16)
+    head = lambda c: paste_c(c, small("в этом блоге:", 46), W/2, 330)
+    topics = [(82, [("работой,", 82)], "studio", 6), (83, [("обычными", 83), ("днями,", 84)], "kitchen", -6),
+              (85, [("мыслями,", 85)], "laptop", 5), (86, [("мечтами", 86)], "read", -5),
+              (87, [("и новыми", 87), ("начинаниями", 89)], "counter", 4)]
+    for wi, lines, ph, rot in topics:
+        def st(c, t, wi=wi, lines=lines, ph=ph, rot=rot):
             head(c)
-            card_in(c, ph, 560, 760, W/2, 940, t, ws(wi) - 0.03, rot=rot, dur=0.2)
-            pop(c, fit_text(word, 980, 230), W/2, 1490, t, ws(wi), dur=0.1)
+            card_in(c, ph, 560, 720, W/2, 880, t, ws(wi) - 0.03, rot=rot, dur=0.2)
+            for j, (w, wj) in enumerate(lines):
+                pop(c, fit_text(w, 980, 200), W/2, 1400 + j*190, t, ws(wj), dur=0.1)
         add(ws(wi) - 0.03, st)
 
-    # 16. и мой ПУ ... ТЬ
-    def s16(c, t):
-        paste_c(c, small("и мой", 46), W/2, 640)
-        card_in(c, "counter", 620, 440, W/2, 960, t, ws(81) - 0.02, rot=0)
-        pop(c, fit_text("пу", 300, 230), 140, 1000, t, ws(83))
-        pop(c, fit_text("ть", 300, 230), 945, 1000, t, ws(83) + 0.12)
-    add(ws(81) - 0.03, s16)
-
-    # 17. не знаю, куда он меня приведёт (фото кухни)
+    # 17. честно?
     def s17(c, t):
-        txt = " ".join(w for w, i in [("не", 84), ("знаю,", 85), ("куда", 86), ("он", 87), ("меня", 88), ("приведёт", 89)] if t >= ws(i))
-        paste_c(c, small(txt, 50, WHITE), W/2, 960)
-    add(ws(84) - 0.05, ("full", "kitchen", s17, 0.05, (0.5, 0.4), 0.35), True)
+        jit = math.sin(t * 55) * 7 if t < ws(90) + 0.3 else 0
+        pop(c, fit_text("честно?", 960, 290), W/2 + jit, 960, t, ws(90), rot=-4)
+    add(ws(90) - 0.05, s17)
 
-    # 18. предлагаю пройти его вместе)
+    # 18. я пока не знаю, к чему всё это приведёт (клип)
     def s18(c, t):
-        txt = " ".join(w for w, i in [("но", 90), ("предлагаю", 91), ("пройти", 92), ("его", 93)] if t >= ws(i))
-        paste_c(c, small(txt, 46), W/2, 820)
-        pop(c, fit_text("вместе)", 960, 260), W/2, 1000, t, ws(94), dur=0.45)
-    add(ws(90) - 0.05, s18)
+        acc(c, [("я", 91), ("пока", 92), ("не", 93), ("знаю,", 94)], 900, 54, WHITE, t)
+        acc(c, [("к", 95), ("чему", 96), ("всё", 97), ("это", 98), ("приведёт", 99)], 980, 54, WHITE, t)
+    add(ws(91) - 0.05, ("clip", None, s18), True)
 
-    # 19. подписывайся — будем знакомиться
+    # 19. но мне интересно узнать)
     def s19(c, t):
-        pop(c, fit_text("подписывайся", 980, 200), W/2, 860, t, ws(95))
-        pop(c, fit_text("будем", 600, 160), W/2, 1060, t, ws(96))
-        pop(c, fit_text("знакомиться", 960, 160), W/2, 1220, t, ws(97))
-    add(ws(95) - 0.05, s19)
+        acc(c, [("но", 100), ("мне", 101)], 780, t=t)
+        pop(c, fit_text("интересно", 960, 240), W/2, 960, t, ws(102))
+        pop(c, fit_text("узнать)", 900, 260), W/2, 1180, t, ws(103), dur=0.45)
+    add(ws(100) - 0.05, s19)
 
-    # 20. small name
     def s20(c, t): paste_c(c, small("bayana_askar", 34), W/2, 960)
-    add(VOICE_END - 0.4, s20)
+    add(VOICE_END - 0.3, s20)
     add(VOICE_END + 0.4, ("outro", None, None), True)
     return sorted(S, key=lambda s: s[0])
 
