@@ -20,7 +20,7 @@ PH = {k: Image.open(UP + v).convert("RGB") for k, v in {
     "read": "e4f536ec-image.jpg", "book": "e58bf32c-image.jpg", "kitchen": "acafdf5f-image.jpg",
     "laptop": "f87c14d0-image.jpg", "counter": "3d80ca09-image.jpg", "pizza": "d6e6f985-image.jpg",
     "studio": "1ab7ea95-image.jpg", "tea": "0428ee83-image.jpg", "tether": "1cb0695a-image.jpg",
-    "bag": "4379cbad-image.jpg", "lookbook": "81c72a33-image.jpg", "cat": "2e81a2dc-image.jpg", "case": "a48e47dc-image.jpg"}.items()}
+    "bag": "4379cbad-image.jpg", "lookbook": "81c72a33-image.jpg", "cat": "2e81a2dc-image.jpg", "case": "a48e47dc-image.jpg", "hello": "16bf4f5a-image.jpg"}.items()}
 PH = {k: ImageOps.exif_transpose(v) for k, v in PH.items()}
 
 WORDS = json.load(open(B + "words.json"))
@@ -162,7 +162,7 @@ def scenes():
 
     # 1. привет
     def s1(c, t):
-        card_in(c, "read", 520, 700, 400, 700, t, 0.0, rot=9)
+        card_in(c, "hello", 560, 800, 430, 680, t, 0.0, rot=8)
         pop(c, fit_text("привет,", 900, 230), 600, 1250, t, ws(0))
     add(0.0, s1)
 
